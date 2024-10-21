@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  chirper-post:
+    image: chirper-post:0.0.1-SNAPSHOT
+    restart: always
+
+  chirper-user:
+    image: chirper-user:0.0.1-SNAPSHOT
+    restart: always
+    environment:
+      CHIRPER_POST_URL: "http://chirper-post:8080"
+
+  chirper-gateway:
+    image: chirper-gateway:0.0.1-SNAPSHOT
+    restart: always
+    environment:
+      CHIRPER_POST_URL: "http://chirper-post:8080"
+      CHIRPER_USER_URL: "http://chirper-user:8080"
+      CHIRPER_GATEWAY_HOST: "chirper-gateway:8080"
+
+  chirper-ng:
+    image: chirper-ng:0.0.1-SNAPSHOT
+    restart: always
+    environment:
+      API_URL: http://chirper-gateway:8080/api
+    ports:
+      - "8087:80"
