@@ -1,0 +1,32 @@
+### Get all posts.
+
+GET http://localhost:8081/api/posts
+
+### Get single user's posts.
+
+GET http://localhost:8081/api/users/b0a5b436-c704-4691-aa06-a0d624d48180/posts
+
+### Get single user's posts, empty.
+
+GET http://localhost:8081/api/users/f3b3b3b3-3b3b-3b3b-3b3b-3b3b3b3b3b3b/posts
+
+### Get single user's posts, not existing.
+
+GET http://localhost:8081/api/users/c651fcb2-75c6-4cc1-98d9-60d41560883d/posts
+
+### Put post.
+
+PUT http://localhost:8081/api/posts/605733f0-7389-4136-81cc-abbc98be49ff
+Content-Type: application/json
+
+{
+    "content": "Updated content"
+}
+
+### Delete post.
+
+DELETE http://localhost:8081/api/posts/605733f0-7390-4136-81cc-abbc98be49ff
+
+### Delete post, not existing.
+
+DELETE http://localhost:8081/api/posts/605733f0-7391-4136-81cc-abbc98be49ff
