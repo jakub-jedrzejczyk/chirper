@@ -1,0 +1,46 @@
+### Get all users.
+
+GET http://localhost:8083/api/users
+
+### Get single user.
+
+GET http://localhost:8083/api/users/b0a5b436-c704-4691-aa06-a0d624d48180
+
+### Get single user, not existing.
+
+GET http://localhost:8083/api/users/c651fcb2-75c6-4cc1-98d9-60d41560883d
+
+### Put user.
+
+PUT http://localhost:8083/api/users/b1a5b436-c704-4691-aa06-a0d624d48180
+Content-Type: application/json
+
+{
+    "id": "b1a5b436-c704-4691-aa06-a0d624d48180",
+    "username": "New User",
+    "password": "newpassword",
+    "displayName": "New Display Name"
+}
+
+### Add user profile picture.
+
+PUT http://localhost:8083/api/users/b1a5b436-c704-4691-aa06-a0d624d48180/profilePicture
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="request"; filename="khyle.jpg"
+
+< ./src/main/resources/win/those/aegiru/chirper/avatar/khyle.jpg
+--boundary--
+
+### Get user profile picture.
+
+GET http://localhost:8083/api/users/b1a5b436-c704-4691-aa06-a0d624d48180/profilePicture
+
+### Get user profile picture, not existing.
+
+GET http://localhost:8083/api/users/c651fcb2-75c6-4cc1-98d9-60d41560883d/profilePicture
+
+### Delete user.
+
+DELETE http://localhost:8083/api/users/b1a5b436-c704-4691-aa06-a0d624d48180
