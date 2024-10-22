@@ -1,0 +1,31 @@
+<article *ngIf="post">
+  <header><h2>Post</h2></header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="row mb-2">
+          <div class="col-6">
+            Content
+          </div>
+          <div class="col-6">
+            {{post.content}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <div class="row mb-2">
+          <div class="col-6">
+            ID
+          </div>
+          <div class="col-6">
+            {{post.id}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

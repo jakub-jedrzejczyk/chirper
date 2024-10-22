@@ -1,0 +1,43 @@
+<article *ngIf="user">
+  <header>
+    <h2>Edit User</h2>
+  </header>
+
+  <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" [(ngModel)]="user.username"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" [(ngModel)]="user.password"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="displayname">Displayed Name</label>
+          <input type="text" id="displayname" name="displayname" [(ngModel)]="user.displayName"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2 p-2">
+        <button type="submit">Update</button>
+      </div>
+      <div class="col-2 p-2">
+        <button type="button" (click)="form.resetForm(original)">Reset</button>
+      </div>
+    </div>
+  </form>
+</article>
