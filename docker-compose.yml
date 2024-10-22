@@ -1,15 +1,46 @@
 version: '3'
 
 services:
+  post-db:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_DB: "post_db"
+      POSTGRES_USER: "post_user"
+      POSTGRES_PASSWORD: "post_password"
+      #    volumes:
+      #- post-db-data:/var/lib/postgresql/data
+
+  user-db:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_DB: "user_db"
+      POSTGRES_USER: "user_user"
+      POSTGRES_PASSWORD: "user_password"
+      #volumes:
+      #- user-db-data:/var/lib/postgresql/data
+
   chirper-post:
     image: chirper-post:0.0.1-SNAPSHOT
     restart: always
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://post-db:5432/post_db"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
+      SPRING_DATASOURCE_USERNAME: "post_user"
+      SPRING_DATASOURCE_PASSWORD: "post_password"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
 
   chirper-user:
     image: chirper-user:0.0.1-SNAPSHOT
     restart: always
     environment:
       CHIRPER_POST_URL: "http://chirper-post:8080"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://user-db:5432/user_db"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
+      SPRING_DATASOURCE_USERNAME: "user_user"
+      SPRING_DATASOURCE_PASSWORD: "user_password"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
 
   chirper-gateway:
     image: chirper-gateway:0.0.1-SNAPSHOT
